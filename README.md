@@ -1,8 +1,36 @@
-**Overview**
+# 3D Gallery
 
-The 3D project aims to create an interactive virtual gallery using three.js, a popular JavaScript library for 3D graphics on the web. The virtual gallery will serve as a platform to showcase artwork, photographs, or any visual content in an immersive and engaging manner. Users will be able to navigate through the gallery, view and interact with the displayed content, and gain a unique experience similar to visiting a physical art gallery.
+The 3D gallery project aims to create an interactive virtual gallery using three.js, a popular JavaScript library that makes rendering and interacting with 3D objects easier, it abstracts the lower level details of having to deal with default browser 3D renderer... WebGL. The virtual gallery will serve as a platform to showcase artwork, or any other 3D visual content in an immersive and engaging manner. Users will be able to navigate through the gallery, view and interact with the displayed content.
 
-**Requirements**
+## Development
+
+### Setup Guide
+
+1. Clone the project
+
+```sh
+git clone https://github.com/asror1/gallery.git
+```
+
+2. Change directory
+
+```sh
+cd gallery
+```
+
+3. Install dependencies
+
+```sh
+npm i
+```
+
+4. Run the project
+
+```sh
+npm run dev
+```
+
+## Requirements
 
 1. **Three.js Integration**: The project should utilize the three.js library to render 3D graphics and create the virtual environment. This includes setting up a scene, camera, lighting, and loading 3D models or images.
 
