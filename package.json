@@ -1,14 +1,20 @@
 {
-  "name": "threejs-ts-starter",
-  "version": "0.1.0",
-  "description": "Simple starter for Three.js projects with TypeScript",
+  "name": "gallery",
+  "version": "0.0.1",
+  "description": "3D Art gallery",
   "main": "index.html",
-  "repository": "https://github.com/mayacoda/simple-threejs-typescript-starter",
-  "author": "Maya Nedeljković Batić",
+  "repository": "https://github.com/asror1/gallery",
+  "author": "asror1",
   "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "commit": "git cz",
     "preview": "vite preview",
     "cleanup": "node ./scripts/cleanup.js",
     "prepare": "husky install",
@@ -20,6 +26,7 @@
     "three": "^0.157.0"
   },
   "devDependencies": {
+    "commitizen": "^4.3.1",
     "@types/three": "^0.156.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.10",
@@ -27,9 +34,9 @@
     "sass": "^1.69.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.11",
-    "vite-plugin-glsl": "^1.1.2"
+    "vite-plugin-glsl": "^1.1.2",
+    "vite-tsconfig-paths": "^5.0.1"
   },
-  "packageManager": "yarn@3.2.1",
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
   }
