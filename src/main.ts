@@ -1,31 +1,47 @@
-import { camera, cube, renderer, scene } from "@components";
-import { ambientLight, directionalLight } from "@components/lights";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { camera, load, renderer, scene } from '@components';
+import { ambientLight, directionalLight } from '@components/lights';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-// scene.add(cube);
-scene.add(directionalLight);
-scene.add(ambientLight);
-const loader = new GLTFLoader();
-loader.load(
-  "donut.glb", // Path to the .glb or .gltf file
-  (gltf) => {
-    const model = gltf.scene;
-    model.scale.set(3, 3, 3);
-    scene.add(model);
-  },
-  undefined,
-  (error) => {
-    console.error(error);
+// Set up OrbitControls
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; // Enable damping (inertia)
+controls.dampingFactor = 0.25; // Damping factor
+controls.screenSpacePanning = false; // Do not allow panning in screen space
+controls.minDistance = 5; // Minimum distance for zoom
+controls.maxDistance = 10; // Maximum distance for zoom
+controls.maxPolarAngle = Math.PI / 2; // Limit vertical rotation to 90 degrees
+
+let isCameraRotating = false;
+
+controls.addEventListener('start', () => {
+  isCameraRotating = true;
+});
+
+controls.addEventListener('end', () => {
+  isCameraRotating = false;
+});
+
+(async function init() {
+  try {
+    const donut: THREE.Object3D = await load('donut.glb');
+    scene.add(directionalLight);
+    scene.add(ambientLight);
+    scene.add(donut);
+    camera.lookAt(donut.position);
+
+    let clock = new THREE.Clock();
+
+    const animate = function () {
+      requestAnimationFrame(animate);
+      controls.update();
+      let time = clock.getElapsedTime();
+      donut.position.y = Math.sin(time * 2) * 0.5;
+      renderer.render(scene, camera);
+    };
+
+    animate();
+  } catch (error) {
+    console.error('Error loading model:', error);
   }
-);
-camera.lookAt(cube.position);
-
-const animate = function () {
-  requestAnimationFrame(animate);
-
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
-  renderer.render(scene, camera);
-};
-
-animate();
+})();

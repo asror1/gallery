@@ -1,4 +1,4 @@
-import { DirectionalLight } from "three";
+import { DirectionalLight } from 'three';
 
 /**
  * Directional light, a light source that acts like a sun in the scene.
@@ -12,6 +12,6 @@ const directionalLight: DirectionalLight = new DirectionalLight(
   INTENSITY
 );
 
-directionalLight.position.set(15, 5, 0); // x, y, z
+directionalLight.position.set(15, 10, 5); // x, y, z
 
 export default directionalLight;
